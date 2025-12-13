@@ -1,5 +1,5 @@
 # Socket-Programming-Assignment-Data-Transmission-with-Error-Detection-Methods
-my name is MURUTS TSEGU GEBRETSADIK AND THIS IS an assignment(project) i did for data communications and systems course
+My name is MURUTS TSEGU GEBRETSADIK AND THIS IS an assignment(project) i did for data communications and systems course
 # Data Communication Project
 
 This project demonstrates **error detection in data communication** using **TCP socket programming in C**.
