@@ -1,37 +1,37 @@
-# Socket-Programming-Assignment-Data-Transmission-with-Error-Detection-Methods
-My name is MURUTS TSEGU GEBRETSADIK AND THIS IS an assignment(project) i did for data communications and systems course
-# Data Communication Project
+# Socket Programming Assignment – Data Transmission with Error Detection
 
-This project demonstrates **error detection in data communication** using **TCP socket programming in C**.
+This project demonstrates data transmission using socket programming in C
+with error detection techniques such as Parity Bit and 2D Parity.
 
-The system uses a **Client–Server–Client architecture**:
-- **Client 1** sends data with control information
-- **Server** intentionally corrupts the data
-- **Client 2** receives the data and detects errors
+The system uses a Client–Server–Client architecture:
+- Client1 sends data
+- Server processes and forwards data
+- Client2 receives and checks for errors
 
-Implemented error detection methods:
-- Parity Bit  
-- 2D Parity  
-- CRC-8  
-- Hamming Code  
-- Internet Checksum  
+## Files
+- server.c   : Handles communication between Client1 and Client2
+- client1.c  : Sender (Parity generation)
+- client2.c  : Receiver (Error detection)
 
-The server applies random transmission errors such as bit flips, character insertion/deletion, substitution, swapping, and burst errors.
+## Requirements
+- Linux / macOS / WSL
+- GCC compiler
 
-All packets follow this format:
+## Compile
+Run the following commands in the project directory:
 
-### Files
-- `client1.c` – Sender
-- `server.c` – Error injector
-- `client2.c` – Receiver and verifier
+gcc server.c -o server  
+gcc client1.c -o client1  
+gcc client2.c -o client2  
 
-### How to Run
-Compile:
-```bash
-gcc server.c -o server
-gcc client1.c -o client1
-gcc client2.c -o client2
+## Run (Order Matters)
+Open three terminals:
+
+Terminal 1:
 ./server
-./client2
-./client1
 
+Terminal 2:
+./client2
+
+Terminal 3:
+./client1
