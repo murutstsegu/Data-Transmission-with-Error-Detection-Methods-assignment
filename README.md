@@ -1,37 +1,54 @@
 # Socket Programming Assignment – Data Transmission with Error Detection
 
-This project demonstrates data transmission using socket programming in C
-with error detection techniques such as Parity Bit and 2D Parity.
+This project demonstrates data transmission using socket programming and
+multiple error detection techniques.
 
-The system uses a Client–Server–Client architecture:
-- Client1 sends data
-- Server processes and forwards data
-- Client2 receives and checks for errors
+## Architecture
+Client 1 (Sender) → Server (Agent & Data Corruptor) → Client 2 (Receiver)
 
-## Files
-- server.c   : Handles communication between Client1 and Client2
-- client1.c  : Sender (Parity generation)
-- client2.c  : Receiver (Error detection)
+## Client 1 – Data Sender
+- Takes text input from the user
+- Generates control information using:
+  - Parity Bit (Even / Odd)
+  - 2D Parity
+  - CRC-16
+  - Hamming Code
+  - Internet Checksum
+- Sends packets in the format:
+  DATA|METHOD|CONTROL_INFORMATION
+
+## Server – Agent + Data Corruptor
+- Receives packets from Client 1
+- Injects random transmission errors such as:
+  - Bit flip
+  - Character substitution
+  - Character deletion
+  - Character insertion
+  - Character swapping
+  - Multiple bit flips
+  - Burst errors
+- Forwards corrupted packets to Client 2 without breaking the packet structure
+
+## Client 2 – Receiver + Error Controller
+- Receives packet from server
+- Separates data, method, and control information
+- Recomputes control information based on method
+- Compares received and computed control values
+- Reports whether the data is correct or corrupted
 
 ## Requirements
-- Linux / macOS / WSL
-- GCC compiler
+- Python 3.x
+- Windows / Linux / macOS
 
-## Compile
-Run the following commands in the project directory:
+## How to Run (Order Matters)
 
-gcc server.c -o server  
-gcc client1.c -o client1  
-gcc client2.c -o client2  
-
-## Run (Order Matters)
 Open three terminals:
 
 Terminal 1:
-./server
+python server.py
 
 Terminal 2:
-./client2
+python client1.py
 
 Terminal 3:
-./client1
+python client2.py
